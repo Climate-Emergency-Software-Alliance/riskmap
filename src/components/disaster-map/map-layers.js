@@ -496,10 +496,12 @@ export class MapLayers {
             .setOffset(20);
         popupContainer.on("close", () => {
                 // feature.properties.clicked = false;
-                if (map.getLayer("fire-selected-icon" + isPartner)) {
-                    map.removeLayer("fire-selected-icon" + isPartner);
+                if(feature.properties.disaster_type === "fire") {
+                    if (map.getLayer("fire-selected-icon" + isPartner)) {
+                        map.removeLayer("fire-selected-icon" + isPartner);
+                    }
+                    self.addFireMarker(feature, map, isPartner);
                 }
-                self.addFireMarker(feature, map, isPartner);
         });
 
         return popupContainer;
