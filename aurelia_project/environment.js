@@ -63,5 +63,14 @@ export default {
       {name: 'twitter', link: 'https://twitter.com/intent/tweet?text=Report+flood&via=CognicityDev_IN'},
       {name: 'telegram', link: 'https://telegram.me/CognicityIN_bot'}
     ]
+  },
+  tabahinaqsha: {
+    title: 'TabahiNaqsha.pk',
+    report_timeperiod: 129600,
+    default_language: 'en',
+    tile_layer: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiYW5yaXNrbWFwIiwiYSI6ImNqMnFraWVzYzAyd24ycXRqMmpvbmhyZ2QifQ.xc_v7umok760t2q6NZK1RA',
+    data_server: 'http://localhost:3000/',
+    app: 'https://dev.tabahinaqsha.pk/',
+    deep_links: []
   }
 };

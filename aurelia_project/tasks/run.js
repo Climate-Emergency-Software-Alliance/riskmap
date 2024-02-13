@@ -44,7 +44,7 @@ let serve = gulp.series(
         var opts = { logger: process.stdout, cors: true };
         console.log(__dirname);
         var mockApiPath = __dirname+'/../../mockapi/.';
-        var mockApiPort = 3000;
+        var mockApiPort = 4000;
         log('Serving mock api from '  +  mockApiPath + ' at localhost:' + mockApiPort);
 
         var can = canned(mockApiPath, opts);

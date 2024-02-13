@@ -1,0 +1,263 @@
+<template>
+  <require from="./side-pane.css"></require>
+  <div id="tabsBar">
+    <ul  class="tabs tabs-nav" repeat.for="language of languages">
+      <li style="list-style: none;border-right: 1px solid;">
+        <p class="languageClass" textcontent.bind="language.code" value.bind="selLanguage"
+          click.delegate="changeLanguage(language.key)"></p>
+      </li>
+    </ul>
+  </div>
+
+  <div id="paneContent">
+    <div class=" paneTabs" repeat.for="menuName of menuList">
+      <div
+        class=" p-2 m-0 accordion" id.bind="'label_' + menuName"
+        textcontent.bind="locale.web_menu.tab_names[menuName]"
+        click.delegate="switchTab(menuName)"
+      >
+
+    </div>
+    <!-- <div class="col-6 col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 p-0 m-0 text-right">
+      <p class="arrows down" id.bind="'down_' + menuName">
+        <i class="icon-down-open"></i>
+    </p>
+      <p class="arrows up" id.bind="'up_' + menuName">
+        <i class="icon-up-open"></i></p>
+    </div> -->
+
+
+      <div class="panel p-0 m-0"
+      id.bind="'vid_' + menuName"
+      ref.bind="'vid_' + menuName">
+        <!-- MAP -->
+        <div id="content-map" if.bind="seltab === 'map'">
+          <p>${locale.map_helper}</p>
+            <ul repeat.for="city of cities">
+              <li style="list-style: none;">
+                <p class="cities"
+                  textcontent.bind="city"
+                  click.delegate="switchCity(city)"
+                ></p>
+              </li>
+            </ul>
+          </label>
+        </div>
+
+        <!-- LEGEND -->
+        <div
+          id="content-map"
+          if.bind="seltab === 'legend'"
+          class="contentWrapper"
+        >
+
+          <table width="300px">
+            <tr repeat.for="type of report_type">
+              <td vertical-align="top" horizontal-align="center" >
+                <i style.bind="'padding:0;font-size:24px;color: ' + type.icon_color" class.bind="'icon-map-' + type.icon"></i>
+              </td>
+              <td>
+                <p class="normal">${type.text[selLanguage.key]}</p>
+              </td>
+            </tr>
+          </table>
+          <!-- // -->
+
+          <!-- legends -->
+          <div class='pb-legends-group' >
+            <div id.bind="all_lgd_data.legend_name" class="pb-legend-container pb-legend-container--flood p-2 ${selLegend === all_lgd_data.legend_name ? 'active' : '' }" repeat.for="all_lgd_data of all_legends_data">
+              <div class="pb-legend-title" click.delegate="all_lgd_data.legend_data && switchLegend(all_lgd_data.legend_name)">
+                <div>
+                  <div class='pb-legend-title__text_plus_icon'>
+                    <img class='pb-legend-title__icon' src.bind="all_lgd_data.legend_title_icon" />
+                    <p class='pb-legend-title__text'>${all_lgd_data.legend_title[currentLanguage]}</p>
+                  </div>
+                  <p class='pb-legend-title__last-report-received-on'>${last_report_received_on[$index][currentLanguage]}</p>
+                </div>
+                <img if.bind="all_lgd_data.legend_data" src.bind="'deployment_specific/pb/ds_assets/icons/ui_icons/' + (selLegend === all_lgd_data.legend_name ? 'expand_less-24px' : 'expand_more-24px') + '.svg'" />
+              </div>
+              <div class='pb-legend'>
+                <div class="pb-legend__row pb-legend__header" if.bind="all_lgd_data.col_2_title">
+                  <div class="pb-legend__cell pb-legend__header-cell" >
+                    <p>${all_lgd_data.col_2_title[currentLanguage]}</p>
+                  </div>
+                </div>
+                <div class='pb-legend__row pb-legend__body-row' repeat.for="fl_data of all_lgd_data.legend_data">
+                  <div class='pb-legend__cell' if.bind="fl_data.col_2">
+                    <div class='pb-legend__cell-color-code' style.bind="'background-color:'+fl_data.col_2.color"></div>
+                    <p>${fl_data.col_2.text[currentLanguage]}</p>
+                  </div>
+                </div>
+                <div class="pb-legend__row pb-legend__header">
+                  <div class="pb-legend__cell pb-legend__header-cell" if.bind="all_lgd_data.col_1_title">
+                    <p>${all_lgd_data.col_1_title[currentLanguage]}</p>
+                  </div>
+                </div>
+                <div class='pb-legend__row pb-legend__body-row' repeat.for="fl_data of all_lgd_data.legend_data">
+                  <div class='pb-legend__cell' if.bind="fl_data.col_1">
+                    <div>
+                    <div class='pb-legend__cell-color-code' style.bind="'background-color:'+fl_data.col_1.color"></div>
+                    </div>
+                    <!-- <img class='pb-legend__cell-icon' src.bind='fl_data.col_1.icon' /> -->
+                    <p>${fl_data.col_1.text[currentLanguage]}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end legends -->
+
+        </div>
+        <!-- REPORT -->
+
+        <div id="content-report" if.bind="seltab === 'report'" class="contentWrapper">
+          <table id="reportTable">
+          <tr class="vidRows">
+            <td>
+              <table class="vidTable">
+                <tr click.delegate="showVideo('youtube')">
+                  <td class="labelRow" id.bind="label_youtube">
+                    <p class="labelText">
+                      <img class='labelIcon' src.bind='youtube_video.icon' />&nbsp;&nbsp;${locale.report_content.youtube.title}
+                    </p>
+                  </td>
+                </tr>
+                <tr class="wrapRow">
+                  <td>
+                    <div class="videoWrapper" id="vid_youtube" ref.bind="vid_youtube">
+                      <iframe width="300" height="225" allowfullscreen="allowfullscreen" frameborder="0" if.bind="youtube_video[currentLanguage]" src.bind="youtube_video[currentLanguage]"></iframe>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+            <tr repeat.for="video of report_methods" class="vidRows">
+              <td>
+                <table class="vidTable">
+                  <tr click.delegate="showVideo(video.platform)">
+                    <td class="labelRow" id.bind="'label_' + video.platform">
+                      <p class="labelText">
+                        <img class='labelIcon' src.bind='video.icon' />&nbsp;&nbsp;${locale.report_content[video.platform].title}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr class="wrapRow">
+                    <td>
+                      <div class="videoWrapper" id.bind="'vid_' + video.platform" ref.bind="'vid_' + video.platform">
+                        <ol>
+                          <li repeat.for="step of locale.report_content[video.platform].steps" innerhtml.bind="step">
+                          </li>
+                        </ol>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <!-- INFO -->
+        <div id="content-info" if.bind="seltab === 'about'" class="contentWrapper">
+          <table id="headLogos">
+            <tr>
+              <td align="left">
+                <a href="https://www.usaid.gov/">
+                  <img id="usaidLogo" src="assets/graphics/USAID-logo.png">
+                </a>
+              </td>
+              <td align="right">
+                <a href="https://info.petabencana.id/">
+                  <img id="yayasanLogo" src="assets/graphics/yayasan_logo.svg">
+                </a>
+              </td>
+            </tr>
+          </table>
+          <p id="intro">${locale.info_content.intro}</p>
+          <p id="description" innerhtml.bind="locale.info_content.p1"></p>
+          <table id="partners">
+            <tr class="label">
+              <td colspan="4" cellpadding="0" align="left">
+                <p>${locale.info_content.partners.implementing}</p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1" align="center">
+                <a href="http://www.bnpb.go.id/">
+                  <img class="bnpbLogo" src="assets/graphics/bnpb_logo.png">
+                </a>
+              </td>
+            </tr>
+            <tr class="label">
+              <td colspan="4" cellpadding="0" align="left">
+                <p>${locale.info_content.partners.project}</p>
+              </td>
+            </tr>
+            <tr class="logos">
+              <td colspan="2" align="center">
+                <a href="http://www.pdc.org/">
+                  <img class="partnerLogo" src="assets/graphics/pcd_logo.png">
+                </a>
+              </td>
+              <td colspan="2" align="center">
+                <a href="https://hotosm.org/">
+                  <img class="partnerLogo" src="assets/graphics/Hot_logo.png">
+                </a>
+              </td>
+            </tr>
+            <tr class="label">
+              <td colspan="4" cellpadding="0" align="left">
+                <p>${locale.info_content.partners.data}</p>
+              </td>
+            </tr>
+            <tr class="logos">
+              <td colspan="2" align="center">
+                <a href="https://twitter.com">
+                  <img class="partnerLogo" src="assets/graphics/twitter_logo.png">
+                </a>
+              </td>
+              <td colspan="2" align="center">
+                <a href="http://pasangmata.detik.com/">
+                  <img class="partnerLogo" src="assets/graphics/pasang_logo.png">
+                </a>
+              </td>
+            </tr>
+            <tr class="logos">
+              <td colspan="2" align="center">
+                <a href="https://www.mapbox.com/">
+                  <img class="partnerLogo" src="assets/graphics/mapbox_logo.png">
+                </a>
+              </td>
+              <td colspan="2" align="center">
+                <a href="http://www.qlue.co.id/">
+                  <img class="partnerLogo" src="assets/graphics/qlue_logo.png">
+                </a>
+              </td>
+
+            </tr>
+          </table>
+
+
+          <p innerhtml.bind="locale.info_content.p2"></p>
+          <p innerhtml.bind="locale.info_content.p3"></p>
+
+          <p id="termslink" click.delegate="openTermsPopup()" innerhtml.bind="locale.info_content.termsPopup"></p>
+
+          <p id="mapbox">
+            ${locale.info_content.mapCredits} ©
+            <a href="https://www.mapbox.com/about/maps/" target="_blank">Mapbox</a> © <a href="http://www.openstreetmap.org/about" target="_blank">OpenStreetMap</a>.
+            ${locale.info_content.mapImproveLink} <a href="https://www.mapbox.com/map-feedback/" target="_blank">Mapbox</a>.
+          </p>
+          <p id="browserstack" innerhtml.bind="locale.info_content.browserStack">
+          </p>
+          <p id="usaid">
+            ${locale.info_content.USAID}
+          </p>
+          <div id="pbLogo">
+            <img src="assets/graphics/Peta_logo.svg">
+          </div>
+      </div>
+       </div>
+    </div>
+  </div>
+</template>
