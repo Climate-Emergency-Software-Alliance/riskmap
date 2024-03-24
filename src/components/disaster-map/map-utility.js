@@ -82,7 +82,11 @@ export class MapUtility {
 
   parseRegion(regionName) {
     let self = this;
-    let defaultRegion = dep.id === 'ph' ? dep.map.default_region.region : 'java';
+    let defaultRegion = dep.map.default_region.region;
+
+    if (dep.id === 'pb') {
+      defaultRegion = 'java';
+    }
 
     if (!regionName) {
       return defaultRegion;

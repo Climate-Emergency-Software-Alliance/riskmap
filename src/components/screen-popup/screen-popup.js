@@ -67,11 +67,10 @@ export class ScreenPopup {
     });
     // this.queryChanged('', '');
     // $('#dropdown_city').show();
-    this.searchResult = Object.keys(this.config.sub_regions);
-    this.popupResult = Object.keys(this.config.sub_regions);
+    this.searchResult = Object.keys(this.config.instance_regions);
+    this.popupResult = Object.keys(this.config.instance_regions);
     this.languages = this.config.supported_languages;
     this.popupText = '';
-
   }
 
   switchTab(name) {
@@ -94,7 +93,7 @@ export class ScreenPopup {
     } else {
       $('#dropdown_city').hide();
     }
-    const map = Object.keys(this.config.sub_regions);
+    const map = Object.keys(this.config.instance_regions);
     let newObj = map.filter(value => {
       return value.toLowerCase().indexOf(newval.toLowerCase()) !== -1 ? value : null;
     });
@@ -105,7 +104,7 @@ export class ScreenPopup {
     $('#popupResults').on('click', function() {
       $(this).toggleClass('clicked');
     });
-    const map = Object.keys(this.config.sub_regions);
+    const map = Object.keys(this.config.instance_regions);
     let newObj = map.filter(value => {
       return value.toLowerCase().indexOf(this.popupText.toLowerCase()) !== -1 ? value : null;
     });
