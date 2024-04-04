@@ -149,7 +149,7 @@ export class Landing {
         const client = new HttpClient().configure((x) => {
           x.withHeader("x-api-key", this.config.data_server_key);
         });
-        const url = this.config.cards_server + "cards/";
+        const url = this.config.data_server + "cards/";
         const body = {
           username: "web_guest",
           language: this.webMenu.currentLanguage,
@@ -177,7 +177,7 @@ export class Landing {
     self
       .initiateReport(type)
       .then((cardId) => {
-        window.location = "http://localhost:4200/" + cardId + "/" + type;
+        window.location = self.config.cards_server + cardId + "/" + type;
       })
       .catch((err) => {
       });
