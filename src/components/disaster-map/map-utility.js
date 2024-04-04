@@ -90,9 +90,11 @@ export class MapUtility {
 
     if (!regionName) {
       return defaultRegion;
-    } else if (self.isRegionSupported(regionName)) {
-      self.selectedRegion = self.config.sub_regions[regionName];
-      return self.config.sub_regions[regionName].province;
+    } else if (self.isCitySupported(regionName)) {
+      self.selectedRegion = self.config.instance_regions[regionName];
+      return regionName;
+      // self.selectedRegion = self.config.sub_regions[regionName];
+      // return self.config.sub_regions[regionName].province;
     }
     // invalid region
     return defaultRegion;
