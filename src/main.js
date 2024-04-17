@@ -9,8 +9,7 @@ Promise.config({
 });
 
 export function configure(aurelia) {
-  aurelia.use
-  .standardConfiguration();
+  aurelia.use.standardConfiguration();
 
   if (environment.debug) {
     aurelia.use.developmentLogging();
