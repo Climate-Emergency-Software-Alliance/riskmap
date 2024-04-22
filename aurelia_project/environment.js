@@ -69,9 +69,9 @@ export default {
     report_timeperiod: 129600,
     default_language: 'en',
     tile_layer: 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoidXJiYW5yaXNrbWFwIiwiYSI6ImNqMnFraWVzYzAyd24ycXRqMmpvbmhyZ2QifQ.xc_v7umok760t2q6NZK1RA',
-    data_server: 'https://dev-api.tabahinaqsha.pk/',
-    cards_server: 'https://cards-dev.tabahinaqsha.pk/',
-    app: 'https://dev.tabahinaqsha.pk/',
+    data_server: 'https://api.tabahinaqsha.pk/',
+    cards_server: 'https://cards.tabahinaqsha.pk/',
+    app: 'https://tabahinaqsha.pk/',
     deep_links: []
   }
 };
