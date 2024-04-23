@@ -26,7 +26,8 @@ export class ScreenPopup {
     this.configData = Config;
     this.cityPopupDisplayStyle =  { display: 'block !important'};
     // this.startPopupDisplayStyle = dep.id === 'ph' ? { display: 'none !important'} : { display: 'block !important'};
-    this.mainLogo = dep.id === 'ph' ? 'assets/graphics/MapaKalamidadLogo.png' : 'assets/graphics/Peta_logo.svg';
+    this.mainLogo = 'assets/graphics/app_logo.svg';
+
     this.socialMediaIcons =  [
       {
         'icon': 'whatsapp',
