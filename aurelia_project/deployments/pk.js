@@ -3,7 +3,8 @@ export default {
   name: 'tabahinaqsha',
   height_units: 'cm',
   supported_languages: [
-    { key: 'en', name: 'English', code: 'EN' }
+    { key: 'en', name: 'English', code: 'EN' },
+    { key: 'ur', name: 'Urdu', code: 'UR' }
   ],
   map: {
     'instance_regions': {

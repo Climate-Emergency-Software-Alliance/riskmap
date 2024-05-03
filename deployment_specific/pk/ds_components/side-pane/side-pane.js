@@ -45,18 +45,18 @@ export class SidePane {
       icon: 'deployment_specific/pb/ds_assets/icons/youtube.png'
     };
     this.report_methods = [
-      {
-        platform: 'whatsapp', //Match string to locale/*/translation.json > report_content.*
-        icon: 'deployment_specific/pb/ds_assets/icons/whatsapp.png'
-      },
-      {
-        platform: 'twitter', //Match string to locale/*/translation.json > report_content.*
-        icon: 'deployment_specific/pb/ds_assets/icons/twitter.png'
-      },
-      {
-        platform: 'telegram',
-        icon: 'deployment_specific/pb/ds_assets/icons/telegram.png'
-      },
+      // {
+      //   platform: 'whatsapp', //Match string to locale/*/translation.json > report_content.*
+      //   icon: 'deployment_specific/pb/ds_assets/icons/whatsapp.png'
+      // },
+      // {
+      //   platform: 'twitter', //Match string to locale/*/translation.json > report_content.*
+      //   icon: 'deployment_specific/pb/ds_assets/icons/twitter.png'
+      // },
+      // {
+      //   platform: 'telegram',
+      //   icon: 'deployment_specific/pb/ds_assets/icons/telegram.png'
+      // },
       {
         platform: 'facebook',
         icon: 'deployment_specific/pb/ds_assets/icons/facebook.png'
@@ -76,7 +76,7 @@ export class SidePane {
       { en: 'Reports remain active for 6 hours', id: 'Masa aktif laporan: 6 jam'},
       { en: 'Reports remain active for 6 hours', id: 'Masa aktif laporan: 6 jam'},
       { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'}
-    ]
+    ];
 
     //legends data
     this.all_legends_data = [
@@ -132,157 +132,157 @@ export class SidePane {
               color: '#A0A9F7' //purple
             }
           }]
-      },
-      //earthquake_road
-      {
-        legend_name: 'eq_road_access',
-        legend_title: { en: 'EARTHQUAKE (ROAD ACCESSIBILITY)', id: 'GEMPABUMI (AKSES JALAN)' },
-        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/road_select.svg',
-        legend_data: [
-          {
-            col_1: {
-              text: { en: '<0.5m (No Vehicle Access)', id: '<0.5m (Tidak Bisa Dilewati Kendaraan)' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_4.svg',
-
-              color: '#CC2A41' //red
-            }
-          },
-          {
-            col_1: {
-              text: { en: '0.6m – 1.0m (2-Wheel Vehicle Access)', id: '0.6m – 1.0m (Akses Kendaraan Roda 2)' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_3.svg',
-              color: '#FF8300' //orange
-            }
-          },
-          {
-            col_1: {
-              text: { en: '1.1m-1.8m (4-Wheel Vehicle Access)', id: '1.1m-1.8m (Akses Kendaraan Roda 4)' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_2.svg',
-              color: '#FFFF00' //yellow
-            }
-          },
-          {
-            col_1: {
-              text: { en: '>1.9m (Large Vehicle Access)', id: '>1.9m (Akses Kendaraan Truk)' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_1.svg',
-              color: '#9ce233' //green
-            }
-          }
-        ]
-      },
-      //earthquake_structural
-      {
-        legend_name: 'eq_structure_fail',
-        legend_title: { en: 'Earthquake (Structural Failure)', id: 'GEMPABUMI (KERUSAKAN BANGUNAN)' },
-        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Earthquake.png',
-        legend_data: [
-          {
-            col_1: {
-              text: { en: 'Fully Collapsed', id: 'Roboh total' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_structure_3.svg',
-              color: '#CC2A41' //red
-            }
-          },
-          {
-            col_1: {
-              text: { en: 'Partial Collapse', id: 'Roboh Sebagian' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_structure_2.svg',
-              color: '#FF8300' //orange
-            }
-          },
-          {
-            col_1: {
-              text: { en: 'Cracking', id: 'Retak' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_structure_1.svg',
-              color: '#FFFF00' //yellow
-            }
-          }
-        ]
-      },
-      //wind
-      {
-        legend_name: 'wind',
-        legend_title: { en: 'Extreme Wind', id: 'ANGIN KENCANG' },
-        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/wind.svg',
-        legend_data: [
-          {
-            col_1: {
-              text: { en: 'High Disruption (Flying roofs, Structural Failure, Large Obstacles flying, crop damage)', id: 'Dampak Berat (Atap Bangunan Terbang, Kerusakan Bangunan, Objek Besar Roboh, Kerusakan Pertanian)' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_3.svg',
-              color: '#CC2A41' //red
-            }
-          },
-          {
-            col_1: {
-              text: { en: 'Medium Disruption (Road blockages, transport disturbance, blackout)', id: 'Dampak Sedang (Penutupan Jalan, Gangguan Transportasi, Listrik Padam)' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_2.svg',
-              color: '#FF8300' //orange
-            }
-          },
-          {
-            col_1: {
-              text: { en: 'Low Disruption (Small objects flying)', id: 'Dampak Ringan (Objek Kecil Beterbangan)' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_1.svg',
-              color: '#FFFF00' //yellow
-            }
-          }
-        ]
-      },
-      //fire
-      {
-        legend_name: 'fire',
-        legend_title: { en: 'FOREST FIRE', id: 'KEBAKARAN HUTAN' },
-        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Fire.png',
-        // legend_data: [
-        //   {
-        //     col_1: {
-        //       text: { en: 'Forest Fire', id: 'kebakaranhutan' },
-        //       icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/fire_1.svg'
-        //     }
-        //   }]
-      },
-      //haze
-      {
-        legend_name: 'haze',
-        legend_title: { en: 'HAZE', id: 'KABUT ASAP' },
-        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Haze.png',
-        legend_data: [
-          {
-            col_1: {
-              text: { en: 'Hazardous Air Quality (Headache, Shortness of Breath)', id: 'Kualitas Udara Berbahaya (Pusing, Sesak Nafas)' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_3.svg',
-              color: '#CC2A41' //red
-            }
-          },
-          {
-            col_1: {
-              text: { en: 'Severe Air Quality (Watery Eyes)', id: 'Kualitas Udara Buruk (Mata Pedih)' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_2.svg',
-              color: '#FF8300' //orange
-            }
-          },
-          {
-            col_1: {
-              text: { en: 'Poor Air Quality (Smell Smoke)', id: 'Kualitas Udara Rendah (Tercium Bau Asap)' },
-              icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_1.svg',
-              color: '#FFFF00' //yellow
-            }
-          }
-        ]
-      },
-      //volcano
-      {
-        legend_name: 'volcano',
-        legend_title: { en: 'VOLCANO', id: 'GUNUNG API' },
-        legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Volcano.png',
-        // legend_data: [
-        //   {
-        //     col_1: {
-        //       text: { en: 'Volcano', id: 'gunungapi' },
-        //       icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/vol_1.png'
-        //     }
-        //   }]
       }
+      //earthquake_road
+      // {
+      //   legend_name: 'eq_road_access',
+      //   legend_title: { en: 'EARTHQUAKE (ROAD ACCESSIBILITY)', id: 'GEMPABUMI (AKSES JALAN)' },
+      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/road_select.svg',
+      //   legend_data: [
+      //     {
+      //       col_1: {
+      //         text: { en: '<0.5m (No Vehicle Access)', id: '<0.5m (Tidak Bisa Dilewati Kendaraan)' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_4.svg',
+
+      //         color: '#CC2A41' //red
+      //       }
+      //     },
+      //     {
+      //       col_1: {
+      //         text: { en: '0.6m – 1.0m (2-Wheel Vehicle Access)', id: '0.6m – 1.0m (Akses Kendaraan Roda 2)' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_3.svg',
+      //         color: '#FF8300' //orange
+      //       }
+      //     },
+      //     {
+      //       col_1: {
+      //         text: { en: '1.1m-1.8m (4-Wheel Vehicle Access)', id: '1.1m-1.8m (Akses Kendaraan Roda 4)' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_2.svg',
+      //         color: '#FFFF00' //yellow
+      //       }
+      //     },
+      //     {
+      //       col_1: {
+      //         text: { en: '>1.9m (Large Vehicle Access)', id: '>1.9m (Akses Kendaraan Truk)' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_1.svg',
+      //         color: '#9ce233' //green
+      //       }
+      //     }
+      //   ]
+      // },
+      //earthquake_structural
+      // {
+      //   legend_name: 'eq_structure_fail',
+      //   legend_title: { en: 'Earthquake (Structural Failure)', id: 'GEMPABUMI (KERUSAKAN BANGUNAN)' },
+      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Earthquake.png',
+      //   legend_data: [
+      //     {
+      //       col_1: {
+      //         text: { en: 'Fully Collapsed', id: 'Roboh total' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_structure_3.svg',
+      //         color: '#CC2A41' //red
+      //       }
+      //     },
+      //     {
+      //       col_1: {
+      //         text: { en: 'Partial Collapse', id: 'Roboh Sebagian' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_structure_2.svg',
+      //         color: '#FF8300' //orange
+      //       }
+      //     },
+      //     {
+      //       col_1: {
+      //         text: { en: 'Cracking', id: 'Retak' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_structure_1.svg',
+      //         color: '#FFFF00' //yellow
+      //       }
+      //     }
+      //   ]
+      // },
+      //wind
+      // {
+      //   legend_name: 'wind',
+      //   legend_title: { en: 'Extreme Wind', id: 'ANGIN KENCANG' },
+      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/wind.svg',
+      //   legend_data: [
+      //     {
+      //       col_1: {
+      //         text: { en: 'High Disruption (Flying roofs, Structural Failure, Large Obstacles flying, crop damage)', id: 'Dampak Berat (Atap Bangunan Terbang, Kerusakan Bangunan, Objek Besar Roboh, Kerusakan Pertanian)' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_3.svg',
+      //         color: '#CC2A41' //red
+      //       }
+      //     },
+      //     {
+      //       col_1: {
+      //         text: { en: 'Medium Disruption (Road blockages, transport disturbance, blackout)', id: 'Dampak Sedang (Penutupan Jalan, Gangguan Transportasi, Listrik Padam)' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_2.svg',
+      //         color: '#FF8300' //orange
+      //       }
+      //     },
+      //     {
+      //       col_1: {
+      //         text: { en: 'Low Disruption (Small objects flying)', id: 'Dampak Ringan (Objek Kecil Beterbangan)' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_1.svg',
+      //         color: '#FFFF00' //yellow
+      //       }
+      //     }
+      //   ]
+      // },
+      //fire
+      // {
+      //   legend_name: 'fire',
+      //   legend_title: { en: 'FOREST FIRE', id: 'KEBAKARAN HUTAN' },
+      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Fire.png',
+      //   // legend_data: [
+      //   //   {
+      //   //     col_1: {
+      //   //       text: { en: 'Forest Fire', id: 'kebakaranhutan' },
+      //   //       icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/fire_1.svg'
+      //   //     }
+      //   //   }]
+      // },
+      //haze
+      // {
+      //   legend_name: 'haze',
+      //   legend_title: { en: 'HAZE', id: 'KABUT ASAP' },
+      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Haze.png',
+      //   legend_data: [
+      //     {
+      //       col_1: {
+      //         text: { en: 'Hazardous Air Quality (Headache, Shortness of Breath)', id: 'Kualitas Udara Berbahaya (Pusing, Sesak Nafas)' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_3.svg',
+      //         color: '#CC2A41' //red
+      //       }
+      //     },
+      //     {
+      //       col_1: {
+      //         text: { en: 'Severe Air Quality (Watery Eyes)', id: 'Kualitas Udara Buruk (Mata Pedih)' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_2.svg',
+      //         color: '#FF8300' //orange
+      //       }
+      //     },
+      //     {
+      //       col_1: {
+      //         text: { en: 'Poor Air Quality (Smell Smoke)', id: 'Kualitas Udara Rendah (Tercium Bau Asap)' },
+      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_1.svg',
+      //         color: '#FFFF00' //yellow
+      //       }
+      //     }
+      //   ]
+      // },
+      //volcano
+      // {
+      //   legend_name: 'volcano',
+      //   legend_title: { en: 'VOLCANO', id: 'GUNUNG API' },
+      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Volcano.png',
+      //   // legend_data: [
+      //   //   {
+      //   //     col_1: {
+      //   //       text: { en: 'Volcano', id: 'gunungapi' },
+      //   //       icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/vol_1.png'
+      //   //     }
+      //   //   }]
+      // }
     ];
     //end legends data array
   }
