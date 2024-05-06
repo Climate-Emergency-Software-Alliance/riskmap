@@ -20,7 +20,7 @@ const en = {
   'banner_text': '<p>Extreme weather warning in effect. Report disasters near you via <a class="social-media-link" href="https://bit.ly/BencanaBotWA">WhatsApp</a>,  <a class="social-media-link" href="https://m.me/petabencana.id">Facebook Messenger</a> ,  <a class="social-media-link" href="https://t.me/bencanabot">Telegram</a>.</p>',
   'training_banner_text': '<p>Ito ang plataporma nang pagsasanay.</p>',
   'popup_text': 'Search for disaster location:',
-  'popup_footer': 'PetaBencana.id a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
+  'popup_footer': 'TabahiNaqsha.pk a <i>live</> map displaying <i>real-time</i> disaster information. For historical data, please visit <a href="https://info.petabencana.id/" target="_blank">info.petabencana.id</a>.',
   'search_header': 'Select Region',
   'flood': 'Flood',
   'eq': 'Earthquake',
