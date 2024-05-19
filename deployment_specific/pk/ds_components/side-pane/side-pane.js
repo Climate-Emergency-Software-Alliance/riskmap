@@ -69,7 +69,7 @@ export class SidePane {
 
     //this needs to be dynamicaly populated from backend data
     this.last_report_received_on = [
-      { en: 'Reports remain active for 3 hours', id: 'Masa aktif laporan: 3 jam'},
+      { en: 'Reports remain active for 3 hours', ur: 'رپورٹس 3 گھنٹے تک فعال رہتی ہیں۔', id: 'Masa aktif laporan: 3 jam'},
       { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
       { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
       { en: 'Reports remain active for 2 hours', id: 'Masa aktif laporan: 2 jam'},
@@ -83,52 +83,52 @@ export class SidePane {
       //floods
       {
         legend_name: 'floods',
-        legend_title: { en: 'floods', id: 'banjir' },
+        legend_title: { en: 'floods', ur: 'سیلاب', id: 'banjir' },
         legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Flood.png',
-        col_1_title: { en: 'Flood Gauges', id: 'Tinggi Muka Air' },
-        col_2_title: { en: 'Flood Depth (cm)', id: 'Tinggi Banjir (cm)' },
+        col_1_title: { en: 'Flood Gauges', ur: 'فلڈ گیجز', id: 'Tinggi Muka Air' },
+        col_2_title: { en: 'Flood Depth (cm)', ur: 'سیلاب کی گہرائی (سینٹی میٹر)', id: 'Tinggi Banjir (cm)' },
         legend_data: [
           {
             col_1: {
-              text: { en: 'Alert Level 1', id: 'Siaga 1' },
+              text: { en: 'Alert Level 1', ur: 'الرٹ لیول 1', id: 'Siaga 1' },
               icon: 'assets/icons/floodgauge_1.svg',
               color: '#CC2A41' //red
             },
             col_2: {
-              text: { en: '> 150', id: '> 150' },
+              text: { en: '> 150', ur: '>۱۵۰', id: '> 150' },
               color: '#CC2A41' //red
             }
           },
           {
             col_1: {
-              text: { en: 'Alert Level 2', id: 'Siaga 2' },
+              text: { en: 'Alert Level 2', ur: 'الرٹ لیول 2', id: 'Siaga 2' },
               icon: 'assets/icons/floodgauge_2.svg',
               color: '#FF8300' //orange
             },
             col_2: {
-              text: { en: '71 - 150', id: '71 - 150' },
+              text: { en: '71 - 150', ur: '71 - 150', id: '71 - 150' },
               color: '#FF8300' //orange
             }
           },
           {
             col_1: {
-              text: { en: 'Alert Level 3', id: 'Siaga 3' },
+              text: { en: 'Alert Level 3', ur: 'الرٹ لیول 3', id: 'Siaga 3' },
               icon: 'assets/icons/floodgauge_3.svg',
               color: '#FFFF00' //yellow
             },
             col_2: {
-              text: { en: '10 - 70', id: '10 - 70' },
+              text: { en: '10 - 70', ur: '10 - 70', id: '10 - 70' },
               color: '#FFFF00' //yellow
             }
           },
           {
             col_1: {
-              text: { en: 'Alert Level 4', id: 'Siaga 4' },
+              text: { en: 'Alert Level 4', ur: 'الرٹ لیول 4', id: 'Siaga 4' },
               icon: 'assets/icons/floodgauge_4.svg',
               color: '#9ce233' //green
             },
             col_2: {
-              text: { en: 'Use Caution', id: 'Hati-hati' },
+              text: { en: 'Use Caution', ur: 'احتیاط برتیں۔', id: 'Hati-hati' },
               color: '#A0A9F7' //purple
             }
           }]
