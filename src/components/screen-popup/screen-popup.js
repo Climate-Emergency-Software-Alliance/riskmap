@@ -1,10 +1,11 @@
 import { bindable, customElement } from 'aurelia-framework';
 import { inject, observable } from 'aurelia-framework';
 import { Config } from 'resources/config';
+import { HttpClient } from 'aurelia-http-client';
 
 //start-aurelia-decorators
 @customElement('screen-popup')
-@inject(Config)
+@inject(Config, HttpClient)
 
 //end-aurelia-decorators
 export class ScreenPopup {
@@ -21,6 +22,7 @@ export class ScreenPopup {
   @observable query;
 
   popupPage = 1;
+  hasInitiatedReport = false;
 
   constructor(Config) {
     this.seltab = 'u_a';
@@ -176,5 +178,35 @@ export class ScreenPopup {
 
   showMainOpions() {
     this.popupPage = 1;
+  }
+
+  async initiateFloodReport() {
+    if (this.hasInitiatedReport) return;
+    this.hasInitiatedReport = true;
+
+    const client = new HttpClient().configure(x => {
+      x.withHeader('x-api-key', this.config.data_server_key);
+    });
+
+    const url = `${this.config.data_server}cards/`;
+    const body = {
+      username: 'web_guest',
+      language: this.configData.default_language.key,
+      network: 'website'
+    };
+
+    try {
+      const data = await client.post(url, body);
+      if (data.statusCode && data.statusCode === 200) {
+        const createdCard = JSON.parse(data.response);
+        let CARD_TYPE = 'flood';
+
+        if ('cardId' in createdCard) {
+          window.location = `${this.config.cards_server}${createdCard.cardId}/${CARD_TYPE}`;
+        }
+      }
+    } catch (error) {
+      this.hasInitiatedReport = false;
+    }
   }
 }

@@ -63,7 +63,12 @@
       <div class="searchBox" if.bind="popupPage === 1">
         <h2>Search rain updates by area</h2>
         <div class="inputContainer">
-          <input type="text" placeholder="e.g Karachi East" />
+          <input
+            type="text"
+            placeholder="e.g Karachi East"
+            value.bind="popupText"
+            keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"
+          />
 
           <svg class="searchIcon" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -75,6 +80,28 @@
               fill="#285642"
             />
           </svg>
+        </div>
+
+        <div class="row m-0" style="position: relative">
+          <div
+            id="popupResults"
+            class="searchDropDown"
+            style="
+              position: absolute;
+              display: none;
+              width: 100%;
+              padding: 0;
+              padding-top: 20px;
+              border-radius: 4px;
+              margin-left: 0;
+              max-height: 40vh;
+            "
+          >
+            <ul class="searchDropDown-list" style="padding-left: 0">
+              <li class="dropUl_header"><b>${locale.search_header}</b></li>
+              <li class="dropUl" repeat.for="city of popupResult" click.delegate="switchRegion(city, true)">${city}</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="reportOptionsSelectorBox" if.bind="popupPage === 1">
@@ -117,7 +144,7 @@
             <span>(Message "Hi" on the WhastsApp chat to begin)</span>
           </div>
 
-          <button class="browserOption">
+          <button class="browserOption" click.delegate="initiateFloodReport()">
             <svg
               width="20"
               height="20"
