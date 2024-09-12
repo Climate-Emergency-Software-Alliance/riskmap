@@ -209,4 +209,8 @@ export class ScreenPopup {
       this.hasInitiatedReport = false;
     }
   }
+
+  reportViaWhatsApp() {
+    window.location = `https://api.whatsapp.com/send/?phone=${923268125595}&text&type=phone_number&app_absent=0`;
+  }
 }
