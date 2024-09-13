@@ -2,6 +2,7 @@ import { bindable, customElement } from 'aurelia-framework';
 import { inject, observable } from 'aurelia-framework';
 import { Config } from 'resources/config';
 import { HttpClient } from 'aurelia-http-client';
+import regeneratorRuntime from 'regenerator-runtime';
 
 //start-aurelia-decorators
 @customElement('screen-popup')
