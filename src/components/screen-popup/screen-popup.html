@@ -60,56 +60,72 @@
     </div>
 
     <div id="startPopUpContainer">
-      <div class="searchBox" if.bind="popupPage === 1">
-        <h2>Search rain updates by area</h2>
-        <div class="inputContainer">
-          <input
-            type="text"
-            placeholder="e.g Karachi East"
-            value.bind="popupText"
-            keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"
-          />
-
-          <svg class="searchIcon" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M6.43897 11.8637C7.54443 11.8635 8.61804 11.4935 9.48884 10.8125L12.2267 13.5502L13.1073 12.6696L10.3695 9.9319C11.0508 9.06106 11.4211 7.98726 11.4214 6.88157C11.4214 4.13454 9.18615 1.89941 6.43897 1.89941C3.69178 1.89941 1.45654 4.13454 1.45654 6.88157C1.45654 9.62861 3.69178 11.8637 6.43897 11.8637ZM6.43897 3.14495C8.49983 3.14495 10.1758 4.82083 10.1758 6.88157C10.1758 8.94232 8.49983 10.6182 6.43897 10.6182C4.37811 10.6182 2.70215 8.94232 2.70215 6.88157C2.70215 4.82083 4.37811 3.14495 6.43897 3.14495Z"
-              fill="#285642"
+      <div if.bind="popupPage === 1" style="display: flex; flex-direction: column; flex-grow: 2; justify-content: center">
+        <div class="searchBox">
+          <h2>Search rain updates by area</h2>
+          <div class="inputContainer">
+            <input
+              type="text"
+              placeholder="e.g Karachi East"
+              value.bind="popupText"
+              keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"
             />
-            <path
-              d="M7.31815 6.00186C7.55419 6.23851 7.68436 6.55114 7.68436 6.88245H8.92997C8.93052 6.55514 8.86618 6.23097 8.74068 5.92867C8.61518 5.62637 8.431 5.35195 8.1988 5.12126C7.25587 4.17963 5.62101 4.17963 4.67871 5.12126L5.55811 6.0031C6.03144 5.53104 6.84731 5.53229 7.31815 6.00186Z"
-              fill="#285642"
-            />
-          </svg>
-        </div>
 
-        <div class="row m-0" style="position: relative">
-          <div
-            id="popupResults"
-            class="searchDropDown"
-            style="
-              position: absolute;
-              display: none;
-              width: 100%;
-              padding: 0;
-              padding-top: 20px;
-              border-radius: 4px;
-              margin-left: 0;
-              max-height: 40vh;
-            "
-          >
-            <ul class="searchDropDown-list" style="padding-left: 0">
-              <li class="dropUl_header"><b>${locale.search_header}</b></li>
-              <li class="dropUl" repeat.for="city of popupResult" click.delegate="switchRegion(city, true)">${city}</li>
-            </ul>
+            <svg class="searchIcon" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M6.43897 11.8637C7.54443 11.8635 8.61804 11.4935 9.48884 10.8125L12.2267 13.5502L13.1073 12.6696L10.3695 9.9319C11.0508 9.06106 11.4211 7.98726 11.4214 6.88157C11.4214 4.13454 9.18615 1.89941 6.43897 1.89941C3.69178 1.89941 1.45654 4.13454 1.45654 6.88157C1.45654 9.62861 3.69178 11.8637 6.43897 11.8637ZM6.43897 3.14495C8.49983 3.14495 10.1758 4.82083 10.1758 6.88157C10.1758 8.94232 8.49983 10.6182 6.43897 10.6182C4.37811 10.6182 2.70215 8.94232 2.70215 6.88157C2.70215 4.82083 4.37811 3.14495 6.43897 3.14495Z"
+                fill="#285642"
+              />
+              <path
+                d="M7.31815 6.00186C7.55419 6.23851 7.68436 6.55114 7.68436 6.88245H8.92997C8.93052 6.55514 8.86618 6.23097 8.74068 5.92867C8.61518 5.62637 8.431 5.35195 8.1988 5.12126C7.25587 4.17963 5.62101 4.17963 4.67871 5.12126L5.55811 6.0031C6.03144 5.53104 6.84731 5.53229 7.31815 6.00186Z"
+                fill="#285642"
+              />
+            </svg>
+          </div>
+
+          <div class="row m-0" style="position: relative">
+            <div
+              id="popupResults"
+              class="searchDropDown"
+              style="
+                position: absolute;
+                display: none;
+                width: 100%;
+                padding: 0;
+                padding-top: 20px;
+                border-radius: 4px;
+                margin-left: 0;
+                max-height: 40vh;
+              "
+            >
+              <ul class="searchDropDown-list" style="padding-left: 0">
+                <li class="dropUl_header"><b>${locale.search_header}</b></li>
+                <li class="dropUl" repeat.for="city of popupResult" click.delegate="switchRegion(city, true)">${city}</li>
+              </ul>
+            </div>
           </div>
         </div>
+
+        <div class="reportOptionsSelectorBox">
+          <button click.delegate="showReportingOptions()">
+            <h4 class="title">Report Rain Conditions</h4>
+            <span class="sub">near you</span>
+          </button>
+        </div>
       </div>
-      <div class="reportOptionsSelectorBox" if.bind="popupPage === 1">
-        <button click.delegate="showReportingOptions()">
-          <h4 class="title">Report Rain Conditions</h4>
-          <span class="sub">near you</span>
-        </button>
-      </div>
+
+      <div
+        if.bind="popupPage === 1"
+        style="
+          background-image: url(assets/graphics/home_banner.png);
+          display: flex;
+          flex-grow: 1;
+          height: 115px;
+          width: 100%;
+          background-size: cover;
+          background-repeat: repeat-x;
+        "
+      ></div>
 
       <div class="reportOptionsBox" if.bind="popupPage === 2">
         <div class="mainOptions">
