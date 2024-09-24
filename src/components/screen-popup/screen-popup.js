@@ -1,11 +1,12 @@
 import { bindable, customElement } from 'aurelia-framework';
 import { inject, observable } from 'aurelia-framework';
 import { Config } from 'resources/config';
-import dep from '../../deployment.js';
+import { HttpClient } from 'aurelia-http-client';
+import regeneratorRuntime from 'regenerator-runtime';
 
 //start-aurelia-decorators
 @customElement('screen-popup')
-@inject(Config)
+@inject(Config, HttpClient)
 
 //end-aurelia-decorators
 export class ScreenPopup {
@@ -20,54 +21,52 @@ export class ScreenPopup {
   @bindable initializetab;
   //end-aurelia-decorators
   @observable query;
+
+  popupPage = 1;
+  hasInitiatedReport = false;
+
   constructor(Config) {
     this.seltab = 'u_a';
     this.config = Config.map;
     this.configData = Config;
-    this.cityPopupDisplayStyle =  { display: 'block !important'};
+    this.cityPopupDisplayStyle = { display: 'block !important' };
     // this.startPopupDisplayStyle = dep.id === 'ph' ? { display: 'none !important'} : { display: 'block !important'};
     this.mainLogo = 'assets/graphics/app_logo.svg';
 
-    this.socialMediaIcons =  [
+    this.socialMediaIcons = [
       {
-        'icon': 'whatsapp',
-        'icon_img': 'deployment_specific/pb/ds_assets/icons/whatsapp.svg',
-        'icon_url': 'https://bit.ly/BencanaBotWA'
+        icon: 'whatsapp',
+        icon_img: 'deployment_specific/pb/ds_assets/icons/whatsapp.svg',
+        icon_url: 'https://bit.ly/BencanaBotWA'
       },
       {
-        'icon': 'messenger',
-        'icon_img': 'deployment_specific/pb/ds_assets/icons/messenger.svg',
-        'icon_url': 'https://m.me/petabencana.id'
+        icon: 'messenger',
+        icon_img: 'deployment_specific/pb/ds_assets/icons/messenger.svg',
+        icon_url: 'https://m.me/petabencana.id'
       },
       {
-        'icon': 'telegram',
-        'icon_img': 'deployment_specific/pb/ds_assets/icons/telegram.svg',
-        'icon_url': 'https://t.me/bencanabot'
+        icon: 'telegram',
+        icon_img: 'deployment_specific/pb/ds_assets/icons/telegram.svg',
+        icon_url: 'https://t.me/bencanabot'
       }
     ];
 
-    $(document).click( function(e) {
+    $(document).click(e => {
       if (e.target.id === 'search_icon' && window.innerWidth < 500) {
         $('#search_city_input').focus();
       }
       $('#popupResults').hide();
       $('#dropdown_city').hide();
-
     });
 
-    $('#screen').click( function(e) {
+    $('#screen').click(e => {
       e.stopPropagation();
     });
 
-    $('#search_city_input').on('focus', function() {
+    $('#search_city_input').on('focus', () => {
       $('#cityPopup').addClass('expand');
     });
 
-    $('#search_icon').click( function(e) {
-      // $('#cityPopup').addClass('expand');
-    });
-    // this.queryChanged('', '');
-    // $('#dropdown_city').show();
     this.searchResult = Object.keys(this.config.instance_regions);
     this.popupResult = Object.keys(this.config.instance_regions);
     this.languages = this.config.supported_languages;
@@ -85,7 +84,7 @@ export class ScreenPopup {
   }
 
   queryChanged(newval, oldval) {
-    $('#dropdown_city').on('click', function() {
+    $('#dropdown_city').on('click', () => {
       $(this).toggleClass('clicked');
     });
     this.searchText = newval.toLowerCase();
@@ -102,7 +101,7 @@ export class ScreenPopup {
   }
 
   popupQueryChanged() {
-    $('#popupResults').on('click', function() {
+    $('#popupResults').on('click', () => {
       $(this).toggleClass('clicked');
     });
     const map = Object.keys(this.config.instance_regions);
@@ -116,22 +115,20 @@ export class ScreenPopup {
     } else {
       $('#popupResults').hide();
       $('#socialMediaContainer').show();
-
     }
   }
 
   searchIndonesiaOSM(query) {
     query = query + ', indonesia';
-    this.searchProvider.search({ query })
-      .then((results) => {
-        this.searchResult = results;
-        this.popupResult = results;
-      });
+    this.searchProvider.search({ query }).then(results => {
+      this.searchResult = results;
+      this.popupResult = results;
+    });
   }
 
   resizeSidePane() {
     $('.searchDropDown').css({
-      'height': ($(window).height() - $('#dropdown_city').height()) + 'px'
+      height: $(window).height() - $('#dropdown_city').height() + 'px'
     });
   }
 
@@ -155,14 +152,14 @@ export class ScreenPopup {
 
   handleInputBlur() {
     if (window.innerWidth < 500) {
-      $('#reportButton').css('z-index', '100000')
+      $('#reportButton').css('z-index', '100000');
       $('.search-input-wrapper').removeClass('add-bg');
     }
   }
 
   handleInputFocus() {
     if (window.innerWidth < 500) {
-      $('#reportButton').css('z-index', '1000')
+      $('#reportButton').css('z-index', '1000');
       $('.search-input-wrapper').addClass('add-bg');
     }
   }
@@ -174,5 +171,47 @@ export class ScreenPopup {
         this.switchTab(this.initializetab);
       }
     });
+  }
+
+  showReportingOptions() {
+    this.popupPage = 2;
+  }
+
+  showMainOpions() {
+    this.popupPage = 1;
+  }
+
+  async initiateFloodReport() {
+    if (this.hasInitiatedReport) return;
+    this.hasInitiatedReport = true;
+
+    const client = new HttpClient().configure(x => {
+      x.withHeader('x-api-key', this.config.data_server_key);
+    });
+
+    const url = `${this.config.data_server}cards/`;
+    const body = {
+      username: 'web_guest',
+      language: this.configData.default_language.key,
+      network: 'website'
+    };
+
+    try {
+      const data = await client.post(url, body);
+      if (data.statusCode && data.statusCode === 200) {
+        const createdCard = JSON.parse(data.response);
+        let CARD_TYPE = 'flood';
+
+        if ('cardId' in createdCard) {
+          window.location = `${this.config.cards_server}${createdCard.cardId}/${CARD_TYPE}`;
+        }
+      }
+    } catch (error) {
+      this.hasInitiatedReport = false;
+    }
+  }
+
+  reportViaWhatsApp() {
+    window.location = `https://api.whatsapp.com/send/?phone=${923268125595}&text&type=phone_number&app_absent=0`;
   }
 }

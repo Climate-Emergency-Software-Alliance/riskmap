@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'Wasa-Bold';
+  src: url('./Wasa-Bold.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'Wasa-BoldOblique';
+  src: url('./Wasa-BoldOblique.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'Wasa-Extra-Light';
+  src: url('./Wasa-Extra-Light.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'Wasa-ExtraLightOblique';
+  src: url('./Wasa-ExtraLightOblique.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'Wasa-Light';
+  src: url('./Wasa-Light.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'Wasa-LightOblique';
+  src: url('./Wasa-LightOblique.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'Wasa-Medium';
+  src: url('./Wasa-Medium.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'Wasa-MediumOblique';
+  src: url('./Wasa-MediumOblique.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'Wasa-Oblique';
+  src: url('./Wasa-Oblique.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'Wasa-Regular';
+  src: url('./Wasa-Regular.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'Wasa-Semi-Bold';
+  src: url('./Wasa-Semi-Bold.otf') format('openType');
+}
+
+@font-face {
+  font-family: 'Wasa-Thin';
+  src: url('./Wasa-Thin.otf') format('openType');
+}
