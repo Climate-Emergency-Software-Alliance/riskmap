@@ -1,19 +1,19 @@
 <template>
-    <require from="./landing.css"></require>
-    <require from="leaflet/leaflet.css"></require>
-    <require from="leaflet.markercluster/MarkerCluster.css"></require>
-    <require from="leaflet.markercluster/MarkerCluster.Default.css"></require>
-    <require from="../../components/disaster-map/disaster-map"></require>
-    <require from="../../components/screen-popup/screen-popup"></require>
-    <require from="../../components/report-info/report-info"></require>
-    <require from="../../components/lightbox/lightbox"></require>
-    <require from="../../components/gauge-info/gauge-info"></require>
-    <require from="../../components/flood-info/flood-info"></require>
-    <require from="../../components/side-pane/side-pane"></require>
-    <require from="../../components/earthquake-info/earthquake-info"></require>
-    <require from="../../components/volcano-info/volcano-info"></require>
-    <div id="pageWrapper">
-        <!-- <div id="reportButton" click.delegate="reportTab()">
+  <require from="./landing.css"></require>
+  <require from="leaflet/leaflet.css"></require>
+  <require from="leaflet.markercluster/MarkerCluster.css"></require>
+  <require from="leaflet.markercluster/MarkerCluster.Default.css"></require>
+  <require from="../../components/disaster-map/disaster-map"></require>
+  <require from="../../components/screen-popup/screen-popup"></require>
+  <require from="../../components/report-info/report-info"></require>
+  <require from="../../components/lightbox/lightbox"></require>
+  <require from="../../components/gauge-info/gauge-info"></require>
+  <require from="../../components/flood-info/flood-info"></require>
+  <require from="../../components/side-pane/side-pane"></require>
+  <require from="../../components/earthquake-info/earthquake-info"></require>
+  <require from="../../components/volcano-info/volcano-info"></require>
+  <div id="pageWrapper">
+    <!-- <div id="reportButton" click.delegate="reportTab()">
       <p><i id="buttonText" class="icon-add-report"></i><br>${webMenu.locale.add_report}</p>
     </div>
     <div id="reportLink">
@@ -33,47 +33,49 @@
         </tr>
       </table>
     </div> -->
-        <div class="banner-text" if.bind="getBannerText()" innerhtml.bind="webMenu.locale.training_banner_text"></div>
-        <div class="moving-text" else innerhtml.bind="webMenu.locale.banner_text"></div>
-        <div id="black_bg"></div>
-        <div>
-            <nav id="reportButton" class="float-action-button">
-                <div class="hover-field"></div>
-                <div
-                    class="floating-buttons-wrapper"
-                    id="floating_buttons_wrapper"
-                    mouseover.delegate="domouseover()"
-                    mouseout.delegate="domouseout()"
-                >
-                    <div class="buttons main-button" title="${webMenu.locale.report}" data-toggle="tooltip" data-placement="left">
-                        <img style="width: 60px" src="/assets/icons/Add_Report_Icon_Blue.png" />
-                    </div>
-                    <div
-                        class="buttons"
-                        title="${webMenu.locale.flood}"
-                        data-toggle="tooltip"
-                        data-placement="left"
-                        click.delegate="selectReport('flood')"
-                    >
-                        <img id="flood" style="width: 60px" src="/assets/icons/Add_Report_Icon_Flood.png" />
-                        <div class="row" id="floodLink">
-                            <table class="table table-borderless">
-                                <tr class="row report">
-                                    <img style="width: 250px; height: 200px" src="${webMenu.locale.flood_flow_img}" />
-                                    <div class="reportBtn">
-                                        <input
-                                            type="button"
-                                            class="btn buttonReprt"
-                                            value="${webMenu.locale.add_report}"
-                                            click.delegate="reportDisaster('flood')"
-                                            style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"
-                                        />
-                                    </div>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- <div
+    <div class="banner-text" if.bind="getBannerText()" innerhtml.bind="webMenu.locale.training_banner_text"></div>
+    <!-- Saad: to be enabled later -->
+    <!-- <div class="moving-text" else innerhtml.bind="webMenu.locale.banner_text"></div> -->
+    <!-- Saad: to be enabled later -->
+    <div id="black_bg"></div>
+    <div>
+      <nav id="reportButton" class="float-action-button">
+        <div class="hover-field"></div>
+        <div
+          class="floating-buttons-wrapper"
+          id="floating_buttons_wrapper"
+          mouseover.delegate="domouseover()"
+          mouseout.delegate="domouseout()"
+        >
+          <div class="buttons main-button" title="${webMenu.locale.report}" data-toggle="tooltip" data-placement="left">
+            <img style="width: 60px" src="/assets/icons/Add_Report_Icon_Blue.png" />
+          </div>
+          <div
+            class="buttons"
+            title="${webMenu.locale.flood}"
+            data-toggle="tooltip"
+            data-placement="left"
+            click.delegate="selectReport('flood')"
+          >
+            <img id="flood" style="width: 60px" src="/assets/icons/Add_Report_Icon_Flood.png" />
+            <div class="row" id="floodLink">
+              <table class="table table-borderless">
+                <tr class="row report">
+                  <img style="width: 250px; height: 200px" src="${webMenu.locale.flood_flow_img}" />
+                  <div class="reportBtn">
+                    <input
+                      type="button"
+                      class="btn buttonReprt"
+                      value="${webMenu.locale.add_report}"
+                      click.delegate="reportDisaster('flood')"
+                      style="box-shadow: 2px 2px #7a7a7f; text-transform: uppercase; text-shadow: 2px 2px #7a7a7f"
+                    />
+                  </div>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <!-- <div
                         class="buttons"
                         title="${webMenu.locale.eq}"
                         data-toggle="tooltip"
@@ -249,115 +251,117 @@
                             </table>
                         </div>
                     </div> -->
-                </div>
-            </nav>
         </div>
-        <screen-popup
-            class="start-screen-pop-up-tpl"
-            view-model.ref="screenPopup"
-            helper.bind="webMenu.locale.map_helper"
-            cities.bind="mapModel.cities"
-            selcity.bind="mapModel.selected_city"
-            switch-region.call="mapModel.viewRegionReports($event, $event)"
-            termscontents.bind="webMenu.locale.termsContents"
-            locale.bind="webMenu.locale"
-            initializetab.bind="queried_terms"
-        >
-        </screen-popup>
-
-        <lightbox id="lightbox_pane" if.bind="imageurl" close-lightbox.call="toggleLightbox()" fullsizeimg.bind="imageurl"> </lightbox>
-
-        <disaster-map
-            id="map"
-            locale.bind="webMenu.locale"
-            view-model.ref="mapModel"
-            querytab.bind="queried_tab"
-            querylanguage.bind="queried_lang"
-            querycity.bind="queried_city"
-            reportid.bind="report_id"
-            reset-tab.call="webMenu.switchTab($event)"
-        >
-        </disaster-map>
-
-        <div id="topBar">
-            <div class="menuBtn active" click.delegate="mapModel.togglePane('#sidePane', 'show', true)">
-                <i class="icon-menu"></i>
-            </div>
-            <div class="menuBtn" id="closeSidePane" click.delegate="mapModel.togglePane('#sidePane', 'hide', false)">
-                <i class="icon-cancel-circled-outline"></i>
-            </div>
-        </div>
-
-        <div id="infoPane">
-            <div class="closeBtn" click.delegate="mapModel.togglePane('#infoPane', 'hide', true)">
-                <i class="icon-cancel-circled-outline" aria-hidden="true"></i>
-            </div>
-
-            <gauge-info
-                show.bind="mapModel.layers.popupContent.guage_sevearity"
-                class="infoWrapper"
-                locale.bind="webMenu.locale"
-                description.bind="mapModel.layers.popupContent.guage_sevearity"
-                name.bind="mapModel.layers.popupContent.gauge_name"
-            >
-            </gauge-info>
-
-            <flood-info
-                class="infoWrapper"
-                if.bind="mapModel.layers.popupContent.state"
-                locale.bind="webMenu.locale"
-                areaname.bind="mapModel.layers.popupContent.area_name"
-                districtname.bind="mapModel.layers.popupContent.parent_name"
-                state.bind="mapModel.layers.popupContent.state"
-                updated.bind="mapModel.layers.formatTime(mapModel.layers.popupContent.last_updated)"
-            >
-            </flood-info>
-
-            <earthquake-info
-                show.bind="mapModel.layers.popupContent.magnitude"
-                locale.bind="webMenu.locale"
-                feltarea.bind="mapModel.layers.popupContent.feltarea"
-                zone.bind="mapModel.layers.popupContent.zone"
-                magnitude.bind="mapModel.layers.popupContent.magnitude"
-                last_updated.bind="mapModel.layers.popupContent.date"
-            ></earthquake-info>
-
-            <volcano-info
-                show.bind="mapModel.layers.popupContent.volcano_name"
-                locale.bind="webMenu.locale"
-                volcano_name.bind="mapModel.layers.popupContent.volcano_name"
-                activity_level.bind="mapModel.layers.popupContent.activity_level"
-                visual.bind="mapModel.layers.popupContent.visual"
-                photo_.bind="mapModel.layers.popupContent.photo_"
-                share_url.bind="mapModel.layers.popupContent.share_url"
-                last_updated.bind="mapModel.layers.popupContent.local_date"
-            ></volcano-info>
-
-            <report-info
-                class="infoWrapper"
-                if.bind="mapModel.layers.popupContent.pkey"
-                id.bind="report_id"
-                locale.bind="webMenu.locale"
-                popupcontent.bind="mapModel.layers.popupContent"
-                city.bind="mapModel.utility.parseCityName(mapModel.layers.popupContent.tags.instance_region_code, mapModel.cities)"
-                open-lightbox.call="toggleLightbox($event)"
-            >
-            </report-info>
-        </div>
-
-        <div id="sidePane">
-            <side-pane
-                view-model.ref="webMenu"
-                querylanguage.two-way="queried_lang"
-                cities.bind="mapModel.cities"
-                selcity.two-way="mapModel.selected_city"
-                change-city.call="mapModel.viewReports($event, $event)"
-                close-pane.call="mapModel.togglePane('#sidePane', 'hide', false)"
-                reportId.two-way="report_id"
-                open-terms.call="screenPopup.openPopup($event)"
-                queriedterms="queried_terms"
-            >
-            </side-pane>
-        </div>
+      </nav>
     </div>
+    <screen-popup
+      class="start-screen-pop-up-tpl"
+      view-model.ref="screenPopup"
+      helper.bind="webMenu.locale.map_helper"
+      cities.bind="mapModel.cities"
+      selcity.bind="mapModel.selected_city"
+      switch-region.call="mapModel.viewRegionReports($event, $event)"
+      termscontents.bind="webMenu.locale.termsContents"
+      locale.bind="webMenu.locale"
+      initializetab.bind="queried_terms"
+    >
+    </screen-popup>
+
+    <lightbox id="lightbox_pane" if.bind="imageurl" close-lightbox.call="toggleLightbox()" fullsizeimg.bind="imageurl"> </lightbox>
+
+    <disaster-map
+      id="map"
+      locale.bind="webMenu.locale"
+      view-model.ref="mapModel"
+      querytab.bind="queried_tab"
+      querylanguage.bind="queried_lang"
+      querycity.bind="queried_city"
+      reportid.bind="report_id"
+      reset-tab.call="webMenu.switchTab($event)"
+    >
+    </disaster-map>
+
+    <!-- Saad: to be enabled later -->
+    <!-- <div id="topBar">
+      <div class="menuBtn active" click.delegate="mapModel.togglePane('#sidePane', 'show', true)">
+        <i class="icon-menu"></i>
+      </div>
+      <div class="menuBtn" id="closeSidePane" click.delegate="mapModel.togglePane('#sidePane', 'hide', false)">
+        <i class="icon-cancel-circled-outline"></i>
+      </div>
+    </div> -->
+    <!-- Saad: to be enabled later -->
+
+    <div id="infoPane">
+      <div class="closeBtn" click.delegate="mapModel.togglePane('#infoPane', 'hide', true)">
+        <i class="icon-cancel-circled-outline" aria-hidden="true"></i>
+      </div>
+
+      <gauge-info
+        show.bind="mapModel.layers.popupContent.guage_sevearity"
+        class="infoWrapper"
+        locale.bind="webMenu.locale"
+        description.bind="mapModel.layers.popupContent.guage_sevearity"
+        name.bind="mapModel.layers.popupContent.gauge_name"
+      >
+      </gauge-info>
+
+      <flood-info
+        class="infoWrapper"
+        if.bind="mapModel.layers.popupContent.state"
+        locale.bind="webMenu.locale"
+        areaname.bind="mapModel.layers.popupContent.area_name"
+        districtname.bind="mapModel.layers.popupContent.parent_name"
+        state.bind="mapModel.layers.popupContent.state"
+        updated.bind="mapModel.layers.formatTime(mapModel.layers.popupContent.last_updated)"
+      >
+      </flood-info>
+
+      <earthquake-info
+        show.bind="mapModel.layers.popupContent.magnitude"
+        locale.bind="webMenu.locale"
+        feltarea.bind="mapModel.layers.popupContent.feltarea"
+        zone.bind="mapModel.layers.popupContent.zone"
+        magnitude.bind="mapModel.layers.popupContent.magnitude"
+        last_updated.bind="mapModel.layers.popupContent.date"
+      ></earthquake-info>
+
+      <volcano-info
+        show.bind="mapModel.layers.popupContent.volcano_name"
+        locale.bind="webMenu.locale"
+        volcano_name.bind="mapModel.layers.popupContent.volcano_name"
+        activity_level.bind="mapModel.layers.popupContent.activity_level"
+        visual.bind="mapModel.layers.popupContent.visual"
+        photo_.bind="mapModel.layers.popupContent.photo_"
+        share_url.bind="mapModel.layers.popupContent.share_url"
+        last_updated.bind="mapModel.layers.popupContent.local_date"
+      ></volcano-info>
+
+      <report-info
+        class="infoWrapper"
+        if.bind="mapModel.layers.popupContent.pkey"
+        id.bind="report_id"
+        locale.bind="webMenu.locale"
+        popupcontent.bind="mapModel.layers.popupContent"
+        city.bind="mapModel.utility.parseCityName(mapModel.layers.popupContent.tags.instance_region_code, mapModel.cities)"
+        open-lightbox.call="toggleLightbox($event)"
+      >
+      </report-info>
+    </div>
+
+    <div id="sidePane">
+      <side-pane
+        view-model.ref="webMenu"
+        querylanguage.two-way="queried_lang"
+        cities.bind="mapModel.cities"
+        selcity.two-way="mapModel.selected_city"
+        change-city.call="mapModel.viewReports($event, $event)"
+        close-pane.call="mapModel.togglePane('#sidePane', 'hide', false)"
+        reportId.two-way="report_id"
+        open-terms.call="screenPopup.openPopup($event)"
+        queriedterms="queried_terms"
+      >
+      </side-pane>
+    </div>
+  </div>
 </template>

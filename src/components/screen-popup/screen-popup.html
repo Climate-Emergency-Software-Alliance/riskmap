@@ -2,9 +2,10 @@
   <require from="./screen-popup.css"></require>
 
   <div id="screen">
-    <div id="cityPopup" class="popupContent" style.bind="cityPopupDisplayStyle">
+    <div id="cityPopup" style="height: 63px;" class="popupContent" style.bind="cityPopupDisplayStyle">
       <img class="pb-logo-header" src.bind="mainLogo" alt="logo" />
-      <div class="search-input-wrapper">
+      <!-- Saad: to be enabled later -->
+      <!-- <div class="search-input-wrapper">
         <input
           id="search_city_input"
           type="text"
@@ -18,7 +19,8 @@
         <div class="search-icon-wrapper">
           <img id="search_icon" class="search-icon" src="deployment_specific/pb/ds_assets/icons/ui_icons/search-black-18dp.svg" alt="" />
         </div>
-      </div>
+      </div>     -->
+      <!-- Saad: to be enabled later -->
 
       <div class="row m-0 dropdown-city-wrapper">
         <div
@@ -60,7 +62,8 @@
     </div>
 
     <div id="startPopUpContainer">
-      <div if.bind="popupPage === 1" style="display: flex; flex-direction: column; flex-grow: 2; justify-content: center">
+      <!-- Saad: to be enabled later -->
+      <!-- <div if.bind="popupPage === 1" style="display: flex; flex-direction: column; flex-grow: 2; justify-content: center">
         <div class="searchBox">
           <h2>Search rain updates by area</h2>
           <div class="inputContainer">
@@ -112,9 +115,50 @@
             <span class="sub">near you</span>
           </button>
         </div>
+      </div> -->
+      <!-- Saad: to be enabled later -->
+
+      <div if.bind="popupPage === 1" style="display: flex; flex-direction: column; flex-grow: 2; justify-content: center">
+        <div style="display: flex; justify-content: center;">
+          <svg width="65" height="108" viewBox="0 0 65 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M38.516 101.797C38.516 105.219 35.744 108 32.3249 108C28.9058 108 26.1338 105.226 26.1338 101.797C26.1338 98.369 28.9058 95.6017 32.3249 95.6017C35.744 95.6017 38.516 98.369 38.516 101.797Z"
+              fill="#F7F7F7"
+            />
+            <path
+              d="M32.3177 0C14.4664 0 0 14.4841 0 32.3489C0 39.6352 2.40424 46.3558 6.46355 51.7609L32.202 86.0865L58.1788 51.7609C62.2381 46.3558 64.6423 39.6352 64.6423 32.3489C64.6423 14.4841 50.1759 0 32.3177 0ZM32.3177 59.6334C16.7753 59.6334 4.18189 47.0238 4.18189 31.4696C4.18189 15.9154 16.7821 3.30577 32.3177 3.30577C47.8534 3.30577 60.4672 15.9154 60.4672 31.4696C60.4672 47.0238 47.8671 59.6334 32.3177 59.6334Z"
+              fill="#F7F7F7"
+            />
+            <path
+              d="M32.3175 5.06469C46.8656 5.06469 58.7098 16.9109 58.7098 31.47C58.7098 46.029 46.8724 57.8753 32.3175 57.8753C17.7626 57.8753 5.93887 46.029 5.93887 31.47C5.93887 16.9109 17.7694 5.06469 32.3175 5.06469ZM32.3175 3.30615C16.775 3.30615 4.18164 15.9158 4.18164 31.47C4.18164 47.0242 16.7818 59.6338 32.3175 59.6338C47.8532 59.6338 60.467 47.0242 60.467 31.47C60.467 15.9158 47.8668 3.30615 32.3175 3.30615Z"
+              fill="#2B2D2D"
+            />
+            <path
+              d="M19.0969 54.4062V8.52747C11.1963 13.1078 5.87012 21.662 5.87012 31.4634C5.87012 41.2649 11.1894 49.819 19.0969 54.3993V54.4062Z"
+              fill="white"
+            />
+            <path
+              d="M32.3235 4.9967C27.5013 4.9967 22.9925 6.29175 19.0967 8.54786V54.3857C22.9857 56.6418 27.5013 57.9368 32.3235 57.9368C46.9328 57.9368 58.7702 46.0837 58.7702 31.4702C58.7702 16.8566 46.926 5.00352 32.3235 5.00352V4.9967Z"
+              fill="#285642"
+            />
+            <path
+              d="M45.9868 36.262C41.8117 39.9767 35.4095 39.6018 31.6976 35.4236C27.9856 31.2454 28.3602 24.8383 32.5353 21.1236C32.7124 20.9668 32.8894 20.8169 33.0733 20.6805C28.619 22.1051 25.3975 26.2765 25.3975 31.2045C25.3975 37.3048 30.3422 42.2533 36.4379 42.2533C40.9059 42.2533 44.7472 39.6018 46.4908 35.7849C46.3274 35.9485 46.1639 36.112 45.9868 36.2688V36.262Z"
+              fill="white"
+            />
+            <path
+              d="M42.5069 27.5987L45.1155 28.1712L43.3378 26.1741L44.6933 23.8635L42.2413 24.9404L40.4637 22.9365L40.7293 25.6016L38.2773 26.6717L40.8928 27.2443L41.1516 29.9093L42.5069 27.5987Z"
+              fill="white"
+            />
+          </svg>
+        </div>
+      <div style="margin-top: 10px;color: #FFF7DD; text-align: center; font-family: Wasa-Regular; font-size: 16px; font-style: normal; font-weight: 600;">
+              <p>
+            We are currently beta testing our system; to support or get involved please contact us at <a href="mailto:contact@aafatinfo.pk">contact@aafatinfo.pk</a>
+          </p>
+        </div>
       </div>
 
-      <div
+      <divmail
         if.bind="popupPage === 1"
         style="
           background-image: url(assets/graphics/home_banner.png);
@@ -127,7 +171,8 @@
         "
       ></div>
 
-      <div class="reportOptionsBox" if.bind="popupPage === 2">
+      <!-- Saad: to be enabled later -->
+      <!-- <div class="reportOptionsBox" if.bind="popupPage === 2">
         <div class="mainOptions">
           <h2>Inform others about the rain conditions near you</h2>
 
@@ -197,7 +242,8 @@
             <h3>Back</h3>
           </div>
         </div>
-      </div>
+      </div> -->
+      <!-- Saad: to be enabled later -->
 
       <!-- <div id="startPopup">
                 <div id="header">
