@@ -17,7 +17,7 @@ const en = {
   add_fire_report: 'Report Forest Fire',
   search_ph: 'Search',
   social_media_popup_header: 'Report a disaster via :',
-  banner_text: '<p>We are currently testing the system. To support or get involved please reach us at <a href="mailto:contact@aafatinfo.pk">contact@AafatInfo.pk</a></p>',
+  banner_text: '<p>We are currently testing the system. To support or get involved, please reach us at <a href="mailto:contact@aafatinfo.pk">contact@AafatInfo.pk</a></p>',
   training_banner_text: '<p>Ito ang plataporma nang pagsasanay.</p>',
   popup_text: 'Search for disaster location:',
   popup_footer:
