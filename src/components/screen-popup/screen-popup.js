@@ -212,6 +212,6 @@ export class ScreenPopup {
   }
 
   reportViaWhatsApp() {
-    window.location = `https://api.whatsapp.com/send/?phone=${923268125595}&text&type=phone_number&app_absent=0`;
+    window.location = `https://api.whatsapp.com/send/?phone=${923250222328}&text&type=phone_number&app_absent=0`;
   }
 }
