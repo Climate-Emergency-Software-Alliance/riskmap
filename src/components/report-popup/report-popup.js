@@ -22,7 +22,6 @@ export class ReportPopup {
     const splitted = inString.split('.');
     const feet = splitted[0];
     const inches = splitted[1][0];
-    console.log('splitted ', splitted);
     return `${feet} ft. ${inches} in.`;
   }
 
