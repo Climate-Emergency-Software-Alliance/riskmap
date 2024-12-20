@@ -1,0 +1,23 @@
+<template>
+  <require from="./report-popup.css"></require>
+
+  <div class="popup" id="report-popup">
+    <div class="popup-content">
+      <img class="disaster_type-img" src="${reportIcon}" alt="" />
+
+      <span class="disaster_date-last-updated">Last Updated: ${disasterTime}</span>
+
+      <span class="disaster_flood-depth">${floodDepth}</span>
+
+      <img class="disaster_submitted-img" src="${disasterImage}" alt="" />
+
+      <p class="disaster_submited-description">${disasterText}</p>
+
+      <div class="disaster_submitted-checklistitems">
+        <span repeat.for="item of disasterChecklist" class="disaster_submitted-checklistitem">${item}</span>
+      </div>
+
+      <button class="button-close" click.delegate="closeReportPopUp()">Close</button>
+    </div>
+  </div>
+</template>

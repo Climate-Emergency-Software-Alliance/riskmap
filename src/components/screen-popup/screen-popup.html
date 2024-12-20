@@ -66,14 +66,10 @@
           <div class="inputContainer">
             <input
               type="text"
-              placeholder="No disasters reported"
-              disabled
+              placeholder="e.g Karachi East"
+              value.bind="popupText"
+              keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"
             />
-
-<!--              placeholder="e.g Karachi East"-->
-<!--              value.bind="popupText"-->
-<!--keyup.delegate="popupQueryChanged(event.target.value) & debounce:300"-->
-
 
             <svg class="searchIcon" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -114,7 +110,7 @@
           <button click.delegate="showReportingOptions()">
             <div>
               <h4 class="title">Report Rain Conditions</h4>
-              <span class="sub">near you</span>  
+              <span class="sub">near you</span>
             </div>
           </button>
         </div>

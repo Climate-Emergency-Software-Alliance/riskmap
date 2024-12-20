@@ -1,31 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 193 194" style="enable-background:new 0 0 193 194;" xml:space="preserve">
-<style type="text/css">
-	.st0{opacity:0.8;}
-	.st1{fill:#C1272D;}
-	.st2{fill:#FFFFFF;stroke:#4D4D4D;stroke-width:3;stroke-miterlimit:10;}
-	.st3{fill:#4D4D4D;}
-</style>
-<title>Asset 44flood</title>
-<g>
-	<g id="Layer_2_1_">
-		<g id="make_a_report_1">
-			<g class="st0">
-				<image style="overflow:visible;opacity:0.75;enable-background:new    ;" width="193" height="194" xlink:href="B6C40740.png" >
-				</image>
-				<ellipse class="st1" cx="91.5" cy="91.7" rx="81.4" ry="81.5"/>
-			</g>
-			
-				<image style="overflow:visible;opacity:0.5;enable-background:new    ;" width="163" height="162" xlink:href="B6C40741.png"  transform="matrix(1 0 0 1 15 16)">
-			</image>
-			<circle class="st2" cx="91.5" cy="91.7" r="64.2"/>
-			<path class="st3" d="M121.4,91.7c-0.4-1-1-2-1.5-3l0.2-0.1L93.2,47.4L66.3,88.6l0.2,0.1c-8.4,14.8-3.3,33.6,11.4,42
-				s33.6,3.3,42-11.4C124.7,110.9,125.3,100.7,121.4,91.7L121.4,91.7z M104,116.6c-2.8,2-6.3,3.1-9.7,3c-1.6,0-3.3-0.2-4.8-0.6
-				c-1.2-0.3-1.9-1.6-1.5-2.8s1.6-1.9,2.8-1.5c0.1,0,6.2,1.7,10.7-1.7c3.4-2.6,5.2-7.6,5.2-14.8c0.1-1.2,1.2-2.2,2.4-2.1
-				c1.1,0.1,2,1,2.1,2.1C111,106.9,108.7,113.1,104,116.6z"/>
-		</g>
-	</g>
+<svg width="73" height="74" viewBox="0 0 73 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_723_5343)">
+<circle cx="36.5" cy="33.4922" r="32.5078" fill="#E20020"/>
+<path d="M36.5271 54.3564C45.3555 54.3564 52.5098 47.1988 52.5098 38.3704C52.5098 34.7697 51.3208 31.4485 49.3132 28.7774L36.5844 11.8146L23.7376 28.7774C21.7301 31.4485 20.541 34.7697 20.541 38.3704C20.541 47.1988 27.6954 54.3564 36.5271 54.3564ZM36.5271 24.887C44.2136 24.887 50.4416 31.1184 50.4416 38.8049C50.4416 46.4914 44.2102 52.7228 36.5271 52.7228C28.844 52.7228 22.6058 46.4914 22.6058 38.8049C22.6058 31.1184 28.8372 24.887 36.5271 24.887Z" fill="white"/>
+<circle cx="36.3388" cy="38.9911" r="14.5557" transform="rotate(-180 36.3388 38.9911)" fill="white"/>
 </g>
+<defs>
+<filter id="filter0_d_723_5343" x="-0.0078125" y="0.984375" width="73.0156" height="73.0156" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_723_5343"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_723_5343" result="shape"/>
+</filter>
+</defs>
 </svg>
