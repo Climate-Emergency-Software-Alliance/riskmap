@@ -96,8 +96,6 @@
     }
     & p {
       .bodybold-mixin(10px);
-      text-align: center;
-      color: @banjir-blue;
       margin: 0px;
     }
     &:hover {
@@ -634,6 +632,57 @@ div.buttons:not(:last-child):nth-last-child(4) {
 
 tr.row.report {
   display: inline-block !important;
+}
+
+.floatingDepthKey {
+  position: absolute;
+  background: #fff;
+  padding: 3px 10px;
+  left: 50px;
+  text-align: left;
+  font-family: Wasa-Medium;
+  width: 105px;
+  top: 73.8vh;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+  border-radius: 5px;
+
+  h4 {
+    font-size: 12px;
+    font-family: Wasa-Bold;
+    text-align: left;
+  }
+
+  p {
+    text-align: left;
+    font-weight: 400;
+
+    .high {
+      background-color: #e20020;
+      height: 8px;
+      width: 8px;
+      display: inline-block;
+      border-radius: 50%;
+      margin-right: 3px;
+    }
+
+    .normal {
+      background-color: #ff7300;
+      height: 8px;
+      width: 8px;
+      display: inline-block;
+      border-radius: 50%;
+      margin-right: 3px;
+    }
+
+    .low {
+      background-color: #ffbf00;
+      height: 8px;
+      width: 8px;
+      display: inline-block;
+      border-radius: 50%;
+      margin-right: 3px;
+    }
+  }
 }
 
 /* ----------- iPhone 6+, 7+ and 8+ ----------- */
