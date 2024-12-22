@@ -2,6 +2,7 @@ import { bindable, customElement, inject } from 'aurelia-framework';
 import $ from 'jquery';
 import { Config } from 'resources/config';
 import { Locales } from 'resources/locales/locales';
+import { HttpClient } from 'aurelia-http-client';
 
 //start-aurelia-decorators
 @customElement('side-pane')
@@ -17,6 +18,9 @@ export class SidePane {
   @bindable reportId;
   @bindable querylanguage;
   //end-aurelia-decorators
+
+  accordionOpenElement = null;
+  hasInitiatedReport = false;
 
   constructor(Locales, Config) {
     this.config = Config;
@@ -45,18 +49,6 @@ export class SidePane {
       icon: 'deployment_specific/pb/ds_assets/icons/youtube.png'
     };
     this.report_methods = [
-      // {
-      //   platform: 'whatsapp', //Match string to locale/*/translation.json > report_content.*
-      //   icon: 'deployment_specific/pb/ds_assets/icons/whatsapp.png'
-      // },
-      // {
-      //   platform: 'twitter', //Match string to locale/*/translation.json > report_content.*
-      //   icon: 'deployment_specific/pb/ds_assets/icons/twitter.png'
-      // },
-      // {
-      //   platform: 'telegram',
-      //   icon: 'deployment_specific/pb/ds_assets/icons/telegram.png'
-      // },
       {
         platform: 'facebook',
         icon: 'deployment_specific/pb/ds_assets/icons/facebook.png'
@@ -69,13 +61,13 @@ export class SidePane {
 
     //this needs to be dynamicaly populated from backend data
     this.last_report_received_on = [
-      { en: 'Reports remain active for 3 hours', ur: 'رپورٹس 3 گھنٹے تک فعال رہتی ہیں۔', id: 'Masa aktif laporan: 3 jam'},
-      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
-      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'},
-      { en: 'Reports remain active for 2 hours', id: 'Masa aktif laporan: 2 jam'},
-      { en: 'Reports remain active for 6 hours', id: 'Masa aktif laporan: 6 jam'},
-      { en: 'Reports remain active for 6 hours', id: 'Masa aktif laporan: 6 jam'},
-      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam'}
+      { en: 'Reports remain active for 3 hours', ur: 'رپورٹس 3 گھنٹے تک فعال رہتی ہیں۔', id: 'Masa aktif laporan: 3 jam' },
+      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam' },
+      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam' },
+      { en: 'Reports remain active for 2 hours', id: 'Masa aktif laporan: 2 jam' },
+      { en: 'Reports remain active for 6 hours', id: 'Masa aktif laporan: 6 jam' },
+      { en: 'Reports remain active for 6 hours', id: 'Masa aktif laporan: 6 jam' },
+      { en: 'Reports remain active for 12 hours', id: 'Masa aktif laporan: 12 jam' }
     ];
 
     //legends data
@@ -131,158 +123,9 @@ export class SidePane {
               text: { en: 'Use Caution', ur: 'احتیاط برتیں۔', id: 'Hati-hati' },
               color: '#A0A9F7' //purple
             }
-          }]
+          }
+        ]
       }
-      //earthquake_road
-      // {
-      //   legend_name: 'eq_road_access',
-      //   legend_title: { en: 'EARTHQUAKE (ROAD ACCESSIBILITY)', id: 'GEMPABUMI (AKSES JALAN)' },
-      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/road_select.svg',
-      //   legend_data: [
-      //     {
-      //       col_1: {
-      //         text: { en: '<0.5m (No Vehicle Access)', id: '<0.5m (Tidak Bisa Dilewati Kendaraan)' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_4.svg',
-
-      //         color: '#CC2A41' //red
-      //       }
-      //     },
-      //     {
-      //       col_1: {
-      //         text: { en: '0.6m – 1.0m (2-Wheel Vehicle Access)', id: '0.6m – 1.0m (Akses Kendaraan Roda 2)' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_3.svg',
-      //         color: '#FF8300' //orange
-      //       }
-      //     },
-      //     {
-      //       col_1: {
-      //         text: { en: '1.1m-1.8m (4-Wheel Vehicle Access)', id: '1.1m-1.8m (Akses Kendaraan Roda 4)' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_2.svg',
-      //         color: '#FFFF00' //yellow
-      //       }
-      //     },
-      //     {
-      //       col_1: {
-      //         text: { en: '>1.9m (Large Vehicle Access)', id: '>1.9m (Akses Kendaraan Truk)' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_road_1.svg',
-      //         color: '#9ce233' //green
-      //       }
-      //     }
-      //   ]
-      // },
-      //earthquake_structural
-      // {
-      //   legend_name: 'eq_structure_fail',
-      //   legend_title: { en: 'Earthquake (Structural Failure)', id: 'GEMPABUMI (KERUSAKAN BANGUNAN)' },
-      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Earthquake.png',
-      //   legend_data: [
-      //     {
-      //       col_1: {
-      //         text: { en: 'Fully Collapsed', id: 'Roboh total' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_structure_3.svg',
-      //         color: '#CC2A41' //red
-      //       }
-      //     },
-      //     {
-      //       col_1: {
-      //         text: { en: 'Partial Collapse', id: 'Roboh Sebagian' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_structure_2.svg',
-      //         color: '#FF8300' //orange
-      //       }
-      //     },
-      //     {
-      //       col_1: {
-      //         text: { en: 'Cracking', id: 'Retak' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/eq_structure_1.svg',
-      //         color: '#FFFF00' //yellow
-      //       }
-      //     }
-      //   ]
-      // },
-      //wind
-      // {
-      //   legend_name: 'wind',
-      //   legend_title: { en: 'Extreme Wind', id: 'ANGIN KENCANG' },
-      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/wind.svg',
-      //   legend_data: [
-      //     {
-      //       col_1: {
-      //         text: { en: 'High Disruption (Flying roofs, Structural Failure, Large Obstacles flying, crop damage)', id: 'Dampak Berat (Atap Bangunan Terbang, Kerusakan Bangunan, Objek Besar Roboh, Kerusakan Pertanian)' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_3.svg',
-      //         color: '#CC2A41' //red
-      //       }
-      //     },
-      //     {
-      //       col_1: {
-      //         text: { en: 'Medium Disruption (Road blockages, transport disturbance, blackout)', id: 'Dampak Sedang (Penutupan Jalan, Gangguan Transportasi, Listrik Padam)' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_2.svg',
-      //         color: '#FF8300' //orange
-      //       }
-      //     },
-      //     {
-      //       col_1: {
-      //         text: { en: 'Low Disruption (Small objects flying)', id: 'Dampak Ringan (Objek Kecil Beterbangan)' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/w_1.svg',
-      //         color: '#FFFF00' //yellow
-      //       }
-      //     }
-      //   ]
-      // },
-      //fire
-      // {
-      //   legend_name: 'fire',
-      //   legend_title: { en: 'FOREST FIRE', id: 'KEBAKARAN HUTAN' },
-      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Fire.png',
-      //   // legend_data: [
-      //   //   {
-      //   //     col_1: {
-      //   //       text: { en: 'Forest Fire', id: 'kebakaranhutan' },
-      //   //       icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/fire_1.svg'
-      //   //     }
-      //   //   }]
-      // },
-      //haze
-      // {
-      //   legend_name: 'haze',
-      //   legend_title: { en: 'HAZE', id: 'KABUT ASAP' },
-      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Haze.png',
-      //   legend_data: [
-      //     {
-      //       col_1: {
-      //         text: { en: 'Hazardous Air Quality (Headache, Shortness of Breath)', id: 'Kualitas Udara Berbahaya (Pusing, Sesak Nafas)' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_3.svg',
-      //         color: '#CC2A41' //red
-      //       }
-      //     },
-      //     {
-      //       col_1: {
-      //         text: { en: 'Severe Air Quality (Watery Eyes)', id: 'Kualitas Udara Buruk (Mata Pedih)' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_2.svg',
-      //         color: '#FF8300' //orange
-      //       }
-      //     },
-      //     {
-      //       col_1: {
-      //         text: { en: 'Poor Air Quality (Smell Smoke)', id: 'Kualitas Udara Rendah (Tercium Bau Asap)' },
-      //         icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/haze_1.svg',
-      //         color: '#FFFF00' //yellow
-      //       }
-      //     }
-      //   ]
-      // },
-      //volcano
-      // {
-      //   legend_name: 'volcano',
-      //   legend_title: { en: 'VOLCANO', id: 'GUNUNG API' },
-      //   legend_title_icon: 'deployment_specific/pb/ds_assets/icons/Add_Report_Icon_Volcano.png',
-      //   // legend_data: [
-      //   //   {
-      //   //     col_1: {
-      //   //       text: { en: 'Volcano', id: 'gunungapi' },
-      //   //       icon: 'deployment_specific/pb/ds_assets/icons/lgd_icons/vol_1.png'
-      //   //     }
-      //   //   }]
-      // }
     ];
     //end legends data array
   }
@@ -292,13 +135,17 @@ export class SidePane {
     this.locale = this.lang_obj[language];
     this.currentLanguage = language;
 
-    $('li p').click(function() {
+    $('li p').click(function () {
       // reset all
       $('ul.tabs p').removeClass('activelanguage');
       $(this).addClass('activelanguage');
-      $(this).parents('li').find('p').filter(function() {
-        return !$(this).closest('p').hasClass('tabs-nav');
-      }).addClass('activelanguage');
+      $(this)
+        .parents('li')
+        .find('p')
+        .filter(function () {
+          return !$(this).closest('p').hasClass('tabs-nav');
+        })
+        .addClass('activelanguage');
     });
   }
 
@@ -316,9 +163,7 @@ export class SidePane {
   }
 
   attached() {
-    this.selLanguage = this.querylanguage
-      ? this.getLangObj(this.querylanguage)
-      : this.config.default_language;
+    this.selLanguage = this.querylanguage ? this.getLangObj(this.querylanguage) : this.config.default_language;
     this.changeLanguage(this.selLanguage.key);
   }
 
@@ -326,8 +171,12 @@ export class SidePane {
     this.seltab = tab;
     $('.panel:not(#vid_' + tab + ')').slideUp('fast');
     $('#vid_' + tab).slideToggle('fast');
-    $('.accordion:not(#label_' + tab + ')').parent().removeClass('active');
-    $('#label_' + tab).parent().toggleClass('active');
+    $('.accordion:not(#label_' + tab + ')')
+      .parent()
+      .removeClass('active');
+    $('#label_' + tab)
+      .parent()
+      .toggleClass('active');
     $('#down_' + tab + ', #up_' + tab).toggle();
     $('.up:not(#up_' + tab + ')').hide();
     $('.down:not(#down_' + tab + ')').show();
@@ -339,6 +188,29 @@ export class SidePane {
     } else {
       this.selLegend = null;
     }
+  }
+
+  collabsibleItemClicked($event, id) {
+    $event.preventDefault();
+    $event.stopImmediatePropagation();
+    const collapsibleIndicatorquery = `#${this.accordionOpenElement} .collapsibleItem-label-indicator`;
+    const collapsibleContentquery = `#${this.accordionOpenElement} .collapsibleItem-content`;
+    const upIcon = `assets/graphics/ChevronUp.svg`;
+    const downIcon = `assets/graphics/ChevronDown.svg`;
+
+    if (this.accordionOpenElement) {
+      $(collapsibleIndicatorquery).attr('src', downIcon);
+      $(collapsibleContentquery).css('display', 'none');
+
+      if (id === this.accordionOpenElement) {
+        this.accordionOpenElement = null;
+        return;
+      }
+    }
+
+    this.accordionOpenElement = id;
+    $(`#${id} .collapsibleItem-label-indicator`).attr('src', upIcon);
+    $(`#${id} .collapsibleItem-content`).css('display', 'flex');
   }
 
   switchCity(city) {
@@ -362,5 +234,34 @@ export class SidePane {
     this.closePane();
     $('#screen').show();
     $('#termsPopup').show();
+  }
+
+  async initiateFloodReport() {
+    if (this.hasInitiatedReport) return;
+    this.hasInitiatedReport = true;
+
+    const client = new HttpClient();
+
+    const url = `${this.config.map.data_server}cards/`;
+    const body = {
+      username: 'web_guest',
+      language: this.config.default_language.key,
+      network: 'website'
+    };
+
+    try {
+      const data = await client.post(url, body);
+      if (data.statusCode && data.statusCode === 200) {
+        const createdCard = JSON.parse(data.response);
+        let CARD_TYPE = 'flood';
+
+        if ('cardId' in createdCard) {
+          window.location = `${this.config.map.cards_server}${createdCard.cardId}/${CARD_TYPE}`;
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      this.hasInitiatedReport = false;
+    }
   }
 }

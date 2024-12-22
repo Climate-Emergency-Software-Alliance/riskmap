@@ -101,7 +101,8 @@ export class Landing {
 
   resizeSidePane() {
     $('#sidePane').css({
-      height: $(window).height() - ($('#topBar').height() + 30) + 'px'
+      height: '100vh',
+      'border-radius': '20px 0px 0px 20px'
     });
     $('#dropdown_city').css({
       height: $(window).height() - ($('#topBar').height() + 30) + 'px'

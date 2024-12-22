@@ -27,8 +27,7 @@ export class ScreenPopup {
 
   constructor(Config) {
     this.seltab = 'u_a';
-    this.config = Config.map;
-    this.configData = Config;
+    this.config = Config;
     this.cityPopupDisplayStyle = { display: 'block !important' };
     // this.startPopupDisplayStyle = dep.id === 'ph' ? { display: 'none !important'} : { display: 'block !important'};
     this.mainLogo = 'assets/graphics/app_logo.svg';
@@ -67,9 +66,9 @@ export class ScreenPopup {
       $('#cityPopup').addClass('expand');
     });
 
-    this.searchResult = Object.keys(this.config.instance_regions);
-    this.popupResult = Object.keys(this.config.instance_regions);
-    this.languages = this.config.supported_languages;
+    this.searchResult = Object.keys(this.config.map.instance_regions);
+    this.popupResult = Object.keys(this.config.map.instance_regions);
+    this.languages = this.config.map.supported_languages;
     this.popupText = '';
   }
 
@@ -80,7 +79,7 @@ export class ScreenPopup {
   }
 
   isCitySupported(querycity) {
-    return querycity in this.config.instance_regions;
+    return querycity in this.config.map.instance_regions;
   }
 
   queryChanged(newval, oldval) {
@@ -93,7 +92,7 @@ export class ScreenPopup {
     } else {
       $('#dropdown_city').hide();
     }
-    const map = Object.keys(this.config.instance_regions);
+    const map = Object.keys(this.config.map.instance_regions);
     let newObj = map.filter(value => {
       return value.toLowerCase().indexOf(newval.toLowerCase()) !== -1 ? value : null;
     });
@@ -104,7 +103,7 @@ export class ScreenPopup {
     $('#popupResults').on('click', () => {
       $(this).toggleClass('clicked');
     });
-    const map = Object.keys(this.config.instance_regions);
+    const map = Object.keys(this.config.map.instance_regions);
     let newObj = map.filter(value => {
       return value.toLowerCase().indexOf(this.popupText.toLowerCase()) !== -1 ? value : null;
     });
@@ -186,13 +185,13 @@ export class ScreenPopup {
     this.hasInitiatedReport = true;
 
     const client = new HttpClient().configure(x => {
-      x.withHeader('x-api-key', this.config.data_server_key);
+      x.withHeader('x-api-key', this.config.map.data_server_key);
     });
 
-    const url = `${this.config.data_server}cards/`;
+    const url = `${this.config.map.data_server}cards/`;
     const body = {
       username: 'web_guest',
-      language: this.configData.default_language.key,
+      language: this.config.default_language.key,
       network: 'website'
     };
 
@@ -203,7 +202,7 @@ export class ScreenPopup {
         let CARD_TYPE = 'flood';
 
         if ('cardId' in createdCard) {
-          window.location = `${this.config.cards_server}${createdCard.cardId}/${CARD_TYPE}`;
+          window.location = `${this.config.map.cards_server}${createdCard.cardId}/${CARD_TYPE}`;
         }
       }
     } catch (error) {
