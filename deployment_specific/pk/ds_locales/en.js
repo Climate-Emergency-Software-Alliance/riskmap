@@ -17,7 +17,7 @@ const en = {
   add_fire_report: 'Report Forest Fire',
   search_ph: 'Search',
   social_media_popup_header: 'Report a disaster via :',
-  banner_text: '<p>We are currently testing the system. To support or get involved, please reach us at <a href="mailto:contact@aafatinfo.pk">contact@AafatInfo.pk</a></p>',
+  banner_text: '<p>AafatInfo.pk is a real-time flood information platform. A project by <a href="https://info.petabencana.id">Disaster Map Foundation (Yayasan Peta Bencana)</a>, it builds on nearly a decade of experience perating award-winning platforms such as PetaBencana.id (Indonesia) and MapaKalamidad.ph (Philippines). AafatInfo.pk ran as a pilot in 2024 with support from re:arc institute. To learn more, support or get involved, please visit <a href="https://info.petabencana.id">info.petabencana.id</a> or contact us at <a href="mailto:info@aafatinfo.pk">info@AafatInfo.pk</a> For verified updates, please refer to our <a href="https://www.instagram.com/p/DMUy2RxydJJ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==">official channels</a></p>',
   training_banner_text: '<p>Ito ang plataporma nang pagsasanay.</p>',
   popup_text: 'Search for disaster location:',
   popup_footer:
